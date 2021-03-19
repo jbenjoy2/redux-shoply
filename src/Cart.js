@@ -54,9 +54,13 @@ function Cart() {
 			{totalQuantity > 0 ? (
 				<div className="Cart-table mt-3">
 					{makeTable()}
-					<select onChange={handleTaxChange} name="taxRate" id="taxRate">
-						{states.map((state) => <option value={stateTaxRates[state]}>{state}</option>)}
-					</select>
+					<div className="form-group">
+						<label htmlFor="taxRate">Select a state to determine sales tax:{'   '}</label>
+						<select onChange={handleTaxChange} name="taxRate" id="taxRate">
+							{states.map((state) => <option value={stateTaxRates[state]}>{state}</option>)}
+						</select>
+					</div>
+
 					<h5>Subtotal: ${cartTotal}</h5>
 					<h5 className="Cart-tax">
 						Tax({(taxRate * 100).toFixed(2)}%): ${calculateTax(cartTotal, taxRate)}
