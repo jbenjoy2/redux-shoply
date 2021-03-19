@@ -1,11 +1,12 @@
 import React from 'react';
 import './CartUpdater.css';
 import { useDispatch } from 'react-redux';
+import { addToCart } from './actions';
 
-function CartUpdater(id) {
+function CartUpdater({ id }) {
 	const dispatch = useDispatch();
-	const add = () => dispatch({ type: 'ADD_TO_CART', id });
-	const remove = () => dispatch({ type: 'REMOVE_FROM_CART', id });
+	const add = () => dispatch(addToCart(id));
+	const remove = () => dispatch({ type: 'REMOVE_FROM_CART', id: id });
 	return (
 		<div className="CartUpdater">
 			<i onClick={remove} className="fas fa-cart-arrow-down fa-2x text-danger CartUpdater-icon" />

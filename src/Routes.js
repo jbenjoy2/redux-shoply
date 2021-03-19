@@ -1,6 +1,8 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import ProductList from './ProductList';
+import ProductDetail from './ProductDetail';
+import Cart from './Cart';
 const Routes = () => {
 	return (
 		<Switch>
@@ -8,7 +10,10 @@ const Routes = () => {
 				<ProductList />
 			</Route>
 			<Route exact path="/cart">
-				<h1>Your Shopping Cart</h1>
+				<Cart />
+			</Route>
+			<Route exact path="/products/:id">
+				<ProductDetail />
 			</Route>
 			<Redirect to="/" />
 		</Switch>

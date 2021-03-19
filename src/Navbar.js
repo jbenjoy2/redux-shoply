@@ -13,7 +13,7 @@ const NavBar = () => {
 
 	return (
 		<div>
-			<Navbar color="primary" dark expand="md" className="px-5 align-top">
+			<Navbar color="info" dark expand="md" className="px-5 align-top">
 				<NavLink className="navbar-brand" to="/">
 					Shoply
 				</NavLink>

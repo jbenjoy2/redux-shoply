@@ -1,0 +1,21 @@
+.ProductDetail {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+	align-items: center;
+}
+
+.ProductDetail-img {
+	width: 300px;
+}
+
+.ProductDetail-basicInfo {
+	display: flex;
+	justify-content: space-between;
+}
+
+.ProductDetail-details {
+	width: 350px;
+	text-align: center;
+}
