@@ -1,0 +1,13 @@
+.ProductCard {
+	width: 250px;
+	border-radius: 10px;
+	margin: 4px;
+	text-align: center;
+}
+
+.ProductCard-body {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	justify-content: center;
+}

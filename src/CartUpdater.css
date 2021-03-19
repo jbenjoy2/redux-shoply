@@ -1,0 +1,14 @@
+.CartUpdater {
+	display: flex;
+	justify-content: space-between;
+}
+
+.CartUpdater-icon {
+	opacity: 0.65;
+	transition: opacity 0.75s;
+}
+
+.CartUpdater-icon:hover {
+	opacity: 1;
+	cursor: pointer;
+}

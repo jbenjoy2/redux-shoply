@@ -1,0 +1,6 @@
+.ProductList-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	padding: 50px 100px;
+}
