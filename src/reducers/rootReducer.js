@@ -1,5 +1,5 @@
 import data from '../data.json';
-import { ADD_TO_CART } from '../actionTypes';
+import { ADD_TO_CART, REMOVE_FROM_CART, UPDATE_TAX_RATE } from '../actionTypes';
 import { calculatePreTaxTotal } from '../helpers';
 
 const items = window.localStorage.getItem('cartItems');
@@ -9,7 +9,8 @@ const cartTotal = total ? JSON.parse(total) : 0.0;
 const INITIAL_STATE = {
 	products  : data.products,
 	cartItems : cartItems,
-	cartTotal : cartTotal
+	cartTotal : cartTotal,
+	taxRate   : 0.04
 };
 
 const rootReducer = (state = INITIAL_STATE, action) => {
@@ -26,7 +27,7 @@ const rootReducer = (state = INITIAL_STATE, action) => {
 				cartTotal : total
 			};
 		}
-		case 'REMOVE_FROM_CART': {
+		case REMOVE_FROM_CART: {
 			const cart = { ...state.cartItems };
 			if (!cart[action.id]) return state;
 			cart[action.id]--;
@@ -42,6 +43,11 @@ const rootReducer = (state = INITIAL_STATE, action) => {
 				cartTotal : total
 			};
 		}
+		case UPDATE_TAX_RATE:
+			return {
+				...state,
+				taxRate : action.taxRate
+			};
 		default:
 			return state;
 	}

@@ -1,13 +1,23 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import CartUpdater from './CartUpdater';
 import { Link } from 'react-router-dom';
-import { calculateQuantity, calculateTaxTotal, calculateTax } from './helpers';
+import {
+	calculateQuantity,
+	calculateTaxTotal,
+	calculateTax,
+	stateTaxRates,
+	states
+} from './helpers';
+import { updateTaxRate } from './actions';
 import './Cart.css';
 function Cart() {
-	const { products, cartItems, cartTotal } = useSelector((st) => st);
+	const { products, cartItems, cartTotal, taxRate } = useSelector((st) => st);
 	const totalQuantity = calculateQuantity(cartItems);
-
+	const dispatch = useDispatch();
+	const handleTaxChange = (evt) => {
+		dispatch(updateTaxRate(evt.target.value));
+	};
 	const makeTable = () => {
 		return (
 			<table className="table table-bordered table-striped">
@@ -44,9 +54,14 @@ function Cart() {
 			{totalQuantity > 0 ? (
 				<div className="Cart-table mt-3">
 					{makeTable()}
+					<select onChange={handleTaxChange} name="taxRate" id="taxRate">
+						{states.map((state) => <option value={stateTaxRates[state]}>{state}</option>)}
+					</select>
 					<h5>Subtotal: ${cartTotal}</h5>
-					<h5 className="Cart-tax">Tax(7.25%): ${calculateTax(cartTotal)}</h5>
-					<h3>Total: ${calculateTaxTotal(cartTotal)}</h3>
+					<h5 className="Cart-tax">
+						Tax({(taxRate * 100).toFixed(2)}%): ${calculateTax(cartTotal, taxRate)}
+					</h5>
+					<h3>Total: ${calculateTaxTotal(cartTotal, taxRate)}</h3>
 				</div>
 			) : (
 				<h3>No items yet!</h3>
