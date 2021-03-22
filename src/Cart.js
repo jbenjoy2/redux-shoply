@@ -57,7 +57,11 @@ function Cart() {
 					<div className="form-group">
 						<label htmlFor="taxRate">Select a state to determine sales tax:{'   '}</label>
 						<select onChange={handleTaxChange} name="taxRate" id="taxRate">
-							{states.map((state) => <option value={stateTaxRates[state]}>{state}</option>)}
+							{states.map((state) => (
+								<option key={state} value={stateTaxRates[state]}>
+									{state}
+								</option>
+							))}
 						</select>
 					</div>
 
